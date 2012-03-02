@@ -1,0 +1,63 @@
+// grid
+!c_width    = 960px
+!grid_col_padding   = 12px
+
+=g_col(!colwidth, !colspan, !colpadding)
+  :width = !colwidth * !colspan - !colpadding
+  :margin-left = !colpadding
+  :float left
+  :display inline
+
+=g_col_bordered(!colpadding, !gborder_width = 1px)
+  :margin-left  = (!colpadding - !gborder_width)/2
+  :padding-left = (!colpadding - !gborder_width)/2
+  :border-left  = !gborder_width solid #CCC
+// not precise
+=g_var_bordered(!colpadding, !gborder_width = 1px)
+  :margin-left  = (!colpadding - 0.1%)/2
+  :padding-left  = (!colpadding - 0.1%)/2
+  :border-left  = !gborder_width solid #CCC
+
+=fg(!c_width, !colNum, !colpadding, !isFluid = 0)
+  !colwidth = !c_width/!colNum
+  // if we combine fixed and variable we need to set fixed widths
+  !fixedColWidth   = 960px/!colNum
+  !fixedColPadding = 12px
+  .factual-grid
+    :position relative
+    @for !i from 1 through !colNum
+      .g_cols#{!i}
+        +g_col(!colwidth, !i, !colpadding)
+    .newline
+      :clear both
+      :margin-left 0px
+    .bordered
+      @if !isFluid == 0
+        +g_col_bordered(!colpadding)
+      @else
+        +g_var_bordered(!colpadding)
+    // only for use in fluid
+    @if !isFluid == 1
+      @for !i from 1 through !colNum
+        .g_fixedCols#{!i}
+          +g_col(!fixedColWidth, !i, !fixedColPadding)
+          :position absolute
+          :top 0px
+          :height 100%
+        .left
+          :left 0px
+        .right 
+          :right 0px
+      @for !i from 1 through !colNum
+        .left#{!i}
+          :padding-left = !fixedColWidth * !i
+        .right#{!i}
+          :padding-right = !fixedColWidth * !i
+
+.fixedWidth
+  +fg(960px, 12, 12px)
+.varWidth
+  +fg(100%, 12, 1%, 1)
+p
+  :text-align justify
+

@@ -1,0 +1,71 @@
+/* attempts to achieve vertical rhythm simply
+ * body line-height is set to typographic-baseline
+ * should add margin-bottom to grid if grid is used
+ */
+
+@font-face 
+  font-family: 'ChanticleerRomanRegular'
+  src: url('fonts/CHANTICL-webfont.eot')
+  src: local('ò∫'), url('fonts/CHANTICL-webfont.woff') format('woff'), url('fonts/CHANTICL-webfont.ttf') format('truetype'), url('fonts/CHANTICL-webfont.svg') format('svg')
+
+$typographic_baseline: 18px
+// The font-size percentage is of 16px. (0.75 * 16px = 12px) 
+// line-height is 1.5 * 12 or 18px
+body
+  line-height: $typographic_baseline
+  font-family: ChanticleerRomanRegular, Helvetica, Arial
+  font-size: 75%
+
+@mixin type-vert($font_size)
+  font-size: $font_size
+  @if $font_size < $typographic-baseline
+    line-height: $typographic_baseline
+    margin-bottom: $typographic_baseline
+  @else
+    line-height: 2 * $typographic_baseline
+    margin-bottom: $typographic_baseline
+
+/* Set up some defaults for h tags
+ */
+h1
+  @include type-vert(24px)
+h2
+  @include type-vert(20px)
+h3
+  @include type-vert(18px)
+h4
+  @include type-vert(16px)
+h5
+  @include type-vert(14px)
+h6
+  @include type-vert(12px)
+
+
+p
+  @include type-vert(12px)
+em
+  @include type-vert(10px)
+.ulist, .olist
+  @include type-vert(14px)
+.ulist
+  list-style-type: disc
+  padding-left: 16px
+  margin-bottom: 14px
+.olist
+  list-style-type: decimal
+  padding-left: 14px
+  margin-left: 6px
+  margin-bottom: 14px
+pre, code
+  font-family: 'DejaVu Sans Mono', Monaco, Consolas, monospace
+code
+  display: block
+  border: 1px dotted #CCC
+  padding: 8px
+  margin-bottom: 14px
+hr 
+  border: 0 #ccc solid
+  border-top-width: 1px
+  clear: both
+  height: 0
+

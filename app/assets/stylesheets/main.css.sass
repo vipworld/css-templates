@@ -1,0 +1,52 @@
+@import reset
+@include reset
+@import fixed_grid
+@include fixed-grid
+
+@import mixins
+@import layout
+@import typography
+
+@media all and (max-width: 300px) 
+  body
+    min-width: 300px
+.clearfix
+  @include clearfix
+
+.fontName
+  font-family: Georgia, serif
+  color: #a1895d
+  font-size: 18px
+
+.sinatra
+  font-family: Georgia, serif
+  font-size: 10px
+  font-style: normal
+  font-weight: normal
+  text-transform: uppercase
+  letter-spacing: 1px
+  line-height: 2em
+.newton
+  font-family: Helvetica, Arial, sans-serif
+  font-size: 44px
+  font-style: normal
+  font-weight: bold
+  text-transform: normal
+  letter-spacing: -2px
+  line-height: 1.2em
+.article
+  font-family: Georgia, serif
+  font-size: 12px
+  font-style: normal
+  font-weight: normal
+  text-transform: normal
+  letter-spacing: normal
+  line-height: 1.5em
+
+// typography shortcuts
+
+.page-header, .page-footer
+  background-color: #EFEFEF
+.page-header
+  @include vert-gradient
+

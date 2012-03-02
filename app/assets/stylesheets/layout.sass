@@ -1,0 +1,28 @@
+/* this is a basic and widely used layout
+ * the header and footer are 100% width
+ * the footer is stuck to the bottom
+ * the body can be 100% or a centered width if pixels are passed in */
+
+$header_height: 60px
+$footer_height: 60px
+$page_width: 960px
+
+html, body
+  height: 100%
+.page-container
+  min-height: 100%
+  min-width: $page_width
+  height: auto !important
+  height: 100%
+  .page-header
+    height: $header_height
+  .page-main
+    // don't think width is necessary here
+    width: $page_width
+    margin: 0px auto
+    padding-bottom: $footer_height
+.page-footer
+  min-width: $page_width
+  margin-top: -($footer_height)
+  height: $footer_height
+  width: 100%

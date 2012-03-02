@@ -1,0 +1,84 @@
+$button_height: 24px
+$border_radius: 5px
+
+.typo
+  font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif
+  h3
+    font-size: 16px
+
+@mixin button_sprite
+  background-image: url(/images/buttons/quick_buttons.png)
+  background-repeat: none
+
+.ui-button
+  cursor: pointer
+  display: inline-block
+  text-decoration: none
+  color: #000
+  .ui-button-outer
+    display: inline-block
+    height: $button_height
+    line-height: $button_height
+    padding-left: $border_radius
+    background-position: 0px 0px
+    @include button_sprite
+    .ui-button-inner
+      display: inline-block
+      @include button_sprite
+      background-position: right (-3 * $button_height)
+      padding-right: $border_radius
+      .icon
+      .label
+.ui-button:hover
+  .ui-button-outer
+    background-position: 0px (-$button_height)
+    .ui-button-inner
+      background-position: right (-4 * $button_height)
+.ui-button-disabled
+  .ui-button-outer
+    background-position: 0px (-2 * $button_height)
+    .ui-button-inner
+      background-position: right (-5 * $button_height)
+
+.modern-button
+  display: inline-block
+  height: $button_height
+  line-height: $button_height
+  border: 1px solid #3b3b3b
+  text-decoration: none
+  color: #000
+  cursor: pointer
+  padding: 0px $border_radius
+  background: #b8c6df
+  background: -moz-linear-gradient(top, #b8c6df 0%, #6d88b7 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b8c6df), color-stop(100%,#6d88b7))
+  -moz-border-radius: $border_radius
+  -webkit-border-radius: $border_radius
+  &:hover
+    background: #c3d9ff
+    background: -moz-linear-gradient(top, #c3d9ff 0%, #b1c8ef 41%, #98b0d9 100%)
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c3d9ff), color-stop(41%,#b1c8ef), color-stop(100%,#98b0d9))
+
+
+
+$icon_width: 16px
+$icon_height: 16px
+$grid_div: 16px
+
+
+@mixin icon_sprite
+  background-image: url(/images/jqui-icons.png)
+  background-repeat: none
+
+@mixin icon_position($x, $y)
+  background-position: (($x - 1) * -$grid_div) (($y - 1) * -$grid_div)
+
+.icon
+  display: inline-block
+  width: $icon_width
+  height: $icon_height
+  @include icon_sprite
+
+.test-icon
+  @include icon_position(5, 2)
+

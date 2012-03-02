@@ -1,0 +1,42 @@
+@mixin clearfix
+  :display block
+  :zoom 1
+  &:after
+    :content " "
+    :display block
+    :height 0
+    :clear both
+    :visibility hidden
+
+@mixin fixed-grid($width: 960px, $numCols: 12, $gutter: 12px)
+  $colWidth: $width/$numCols
+  .grid-container
+    :position relative
+    :overflow hidden
+    :width $width
+    .grid-row
+      @include clearfix
+      > div:first-child
+        margin-left: 0px
+    @for $i from 1 through $numCols
+      .grid-span-#{$i}
+        //:width = ($width - (($numCols/$i)*$gutter))/($numCols/$i)
+        // add a little extra width on to offset first margin 0
+        :width $colWidth * $i - $gutter + ($i/$numCols * $gutter)
+        :margin-left $gutter
+        :float left
+        :display inline
+    .newline
+      :clear left
+      :margin-left 0px
+
+$typographic-baseline: 18px
+
+@mixin type-vert($font-size)
+  :font-size $font-size
+  @if $font-size <= $typographic-baseline
+    :line-height $typographic-baseline
+    :margin-bottom $typographic-baseline
+  @else
+    :line-height 2 * $typographic-baseline
+    :margin-bottom $typographic-baseline

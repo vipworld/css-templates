@@ -1,0 +1,17 @@
+!!! 5
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    = stylesheet_link_tag 'application'
+    = yield :linked_css
+    = javascript_include_tag 'application'
+    = yield :linked_js
+  %body
+    .page-container
+      %header.page-header
+        .header-content
+      .page-width
+        .page-main
+          = yield
+    %footer.page-footer.clear
+      .footer-content
+    = yield :scripts
